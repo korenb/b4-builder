@@ -4,13 +4,20 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "build": "webpack webpack.config.js"
   },
   "author": "",
   "license": "ISC",
   "dependencies": {
     "bootstrap": "^4.0.0-beta.2",
+    "css-loader": "^0.28.7",
+    "extract-text-webpack-plugin": "^3.0.2",
     "jquery": "^1.9.1",
-    "popper.js": "^1.12.3"
+    "node-sass": "^4.7.2",
+    "popper.js": "^1.12.3",
+    "sass-loader": "^6.0.6",
+    "webpack": "^3.10.0",
+    "webpack2-externals-plugin": "^1.0.0"
   }
 }
