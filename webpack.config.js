@@ -3,26 +3,32 @@ var ExternalsPlugin = require('webpack2-externals-plugin');
 var path = require('path');
 
 module.exports = {
-    context: path.resolve(__dirname, 'app'),
-    entry: [path.resolve(__dirname, 'app', '\custom-b4.scss')],
+    context: './app',
+    entry: {
+        build: './index.js'
+    },
     output: {
-        filename: 'bundle.js',
-        path: path.join(__dirname, 'dist')
+        filename: '[name].js',
+        path: path.resolve(__dirname, 'dist')
+    },
+    resolve: {
+        extensions: ['.scss', '.js']
     },
     module: {
         rules: [{
             test: /\.(sass|scss)$/,
+            exclude: /node_modules/,
             use: ExtractTextPlugin.extract(['css-loader', 'sass-loader'])
         }]
     },
     plugins: [
         new ExtractTextPlugin({
-            filename: path.join(__dirname, 'dist\[name]123.css'),
-            allChunks: true
+            filename: path.join(__dirname, 'dist\[name].css'),
+            // allChunks: true
         }),
-        // new ExternalsPlugin({
-        //     type: 'commonjs',
-        //     include: path.join(__dirname, 'node_modules')
-        // }),
+        new ExternalsPlugin({
+            type: 'commonjs',
+            include: ['./webpack.config.js']
+        }),
     ]
 }
